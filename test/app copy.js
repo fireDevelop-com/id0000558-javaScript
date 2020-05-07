@@ -11,6 +11,7 @@ const monsterHealthProgress = document.getElementById('monsterHealthProgressId')
 const playerHealthProgress = document.getElementById('playerHealthProgressId');
 const playerButtonAttack = document.getElementById('playerButtonAttackId');
 const playerButtonAttackStrong = document.getElementById('playerButtonAttackStrongId');
+const playerButtonHeal = 
 
 
 adjustHealth(maxLife);

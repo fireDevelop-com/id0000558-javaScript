@@ -1,6 +1,8 @@
+const monsterAttackValue = 14;
 const playerAttackValue = 10;
 const playerAttackStrongValue = 17;
-const monsterAttackValue = 14;
+const playerHealValue = 20;
+
 let maxLife = 100;
 let monsterCurrentHealth = maxLife;
 let playerCurrentHealth = maxLife;
@@ -11,6 +13,7 @@ const monsterHealthProgress = document.getElementById('monsterHealthProgressId')
 const playerHealthProgress = document.getElementById('playerHealthProgressId');
 const playerButtonAttack = document.getElementById('playerButtonAttackId');
 const playerButtonAttackStrong = document.getElementById('playerButtonAttackStrongId');
+const playerButtonHeal = document.getElementById('playerButtonHealId');
 
 
 adjustHealth(maxLife);
@@ -25,13 +28,18 @@ function adjustHealth (maxLife) {
 
 playerButtonAttack.addEventListener('click', playerAttackHandler);
 playerButtonAttackStrong.addEventListener('click', playerAttackStrongHandler);
+playerButtonHeal.addEventListener('click', playerHealHandler);
 
 function playerAttackHandler() {
   playerAttackMode('attack');
 }
 
-function playerAttackStrongHandler() {
+function playerAttackStrongHandler() { 
   playerAttackMode('attackStrong');
+}
+
+function playerHealHandler(){
+  playerHealIncrease(playerHealValue);
 }
 
 function playerAttackMode(mode) {
