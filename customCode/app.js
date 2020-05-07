@@ -1,36 +1,48 @@
+const monsterAttackValue = 14;
 const playerAttackValue = 10;
 const playerAttackStrongValue = 17;
-const monsterAttackValue = 14;
+const playerHealValue = 20;
+
 let maxLife = 100;
 let monsterCurrentHealth = maxLife;
 let playerCurrentHealth = maxLife;
 
+const monsterHealthPercent = document.getElementById('monsterHealthPercentId');
+const playerHealthPercent = document.getElementById('playerHealthPercentId');
 const monsterHealthProgress = document.getElementById('monsterHealthProgressId');
 const playerHealthProgress = document.getElementById('playerHealthProgressId');
 const playerButtonAttack = document.getElementById('playerButtonAttackId');
 const playerButtonAttackStrong = document.getElementById('playerButtonAttackStrongId');
-const monsterHealtPercent = document.getElementById('monsterHealtPercentId');
-const playerHealtPercent = document.getElementById('playerHealtPercentId');
+const playerButtonHeal = document.getElementById('playerButtonHealId');
+<<<<<<< HEAD:test/app.js
 
-adjustHealthBars(maxLife);
-function adjustHealthBars (maxLife) {
+=======
+>>>>>>> b3365e1e99c92b82e8e3a133e6d215bdf3e74ab4:customCode/app.js
+
+adjustHealth(maxLife);
+function adjustHealth (maxLife) {
   monsterHealthProgress.max = maxLife;
   monsterHealthProgress.value = maxLife;
   playerHealthProgress.max = maxLife;
   playerHealthProgress.value = maxLife;
-  monsterHealtPercent.value = maxLife;
-  playerHealtPercent.value = maxLife;
+  monsterHealthPercent.textContent = maxLife;
+  playerHealthPercent.textContent = maxLife;
 }
 
 playerButtonAttack.addEventListener('click', playerAttackHandler);
 playerButtonAttackStrong.addEventListener('click', playerAttackStrongHandler);
+playerButtonHeal.addEventListener('click', playerHealHandler);
 
 function playerAttackHandler() {
   playerAttackMode('attack');
 }
 
-function playerAttackStrongHandler() {
+function playerAttackStrongHandler() { 
   playerAttackMode('attackStrong');
+}
+
+function playerHealHandler(){
+  playerHealIncrease(playerHealValue);
 }
 
 function playerAttackMode(mode) {
@@ -45,16 +57,16 @@ function playerAttackMode(mode) {
   const playerDamage = playerDeal(monsterAttackValue);
 
   function monsterDeal (damage) {
-    const damageDeal = (Math.round(Math.random() * damage)*100)/100;
+    const damageDeal = Math.round(Math.random() * damage);
     monsterHealthProgress.value = monsterHealthProgress.value - damageDeal;
-    monsterHealtPercent.textContent=monsterHealthProgress.value;
+    monsterHealthPercent.textContent=monsterHealthProgress.value;
     return damageDeal;
   }
   
   function playerDeal (damage) {
-    const damageDeal = (Math.round(Math.random() * damage)*100)/100;
+    const damageDeal = Math.round(Math.random() * damage);
     playerHealthProgress.value = playerHealthProgress.value - damageDeal;
-    playerHealtPercent.textContent=playerHealthProgress.value;
+    playerHealthPercent.textContent=playerHealthProgress.value;
     return damageDeal;
   }
 
@@ -70,4 +82,3 @@ function playerAttackMode(mode) {
     alert('You have a draw!');
   }
 }
-
