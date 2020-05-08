@@ -1,0 +1,32 @@
+<html>
+<head>
+
+</head>
+<body>
+    <spam id="text"></spam>
+    <script type="text/javascript">
+    const numberRandom1 = Math.random();
+    const numberRandom2 = Math.random();
+
+
+            if(numberRandom1 && numberRandom2 > 0.7){
+                document.write("both are higher than 0.7 <br>");
+            } else if(numberRandom1 || numberRandom2 < 0.2){
+                document.write("some of one is not greather than 0.2 <br>");
+            }
+          
+    
+
+    let cars = ["Ferrari", "Porsche", "Renault", "Seat"];
+    for(let i=0; i<cars.length; i++){
+        console.log(cars[i]);
+        document.write(i+ " " + cars[i] + "<br>");
+    } 
+    document.write("<br> ******* <br>");
+    for(let i=cars.length-1; i>=0; i--){
+        console.log(cars[i]);
+        document.write(i+ " " + cars[i] + "<br>");
+    }
+	</script>
+</body>
+</html>
