@@ -21,7 +21,7 @@ const updateUI = () => {
   }
 };
 
-const closeMovieDeletionModal = () => {
+const deleteMovieClose = () => {
   toggleBackdrop();
   deleteMovie.classList.remove('visible');
 };
@@ -37,8 +37,7 @@ const deleteMovieHandler = movieId => {
   movies.splice(movieIndex, 1);
   const listRoot = document.getElementById('movie-list');
   listRoot.children[movieIndex].remove();
-  // listRoot.removeChild(listRoot.children[movieIndex]);
-  closeMovieDeletionModal();
+  deleteMovieClose();
   updateUI();
 };
 
@@ -52,12 +51,10 @@ const startDeleteMovieHandler = movieId => {
   confirmDeletionButton.replaceWith(confirmDeletionButton.cloneNode(true));
 
   confirmDeletionButton = deleteMovie.querySelector('.btn--danger');
-
-  // confirmDeletionButton.removeEventListener('click', deleteMovieHandler.bind(null, movieId)); // will not work :(
     
-  cancelDeletionButton.removeEventListener('click', closeMovieDeletionModal);
+  cancelDeletionButton.removeEventListener('click', deleteMovieClose);
 
-  cancelDeletionButton.addEventListener('click', closeMovieDeletionModal);
+  cancelDeletionButton.addEventListener('click', deleteMovieClose);
   confirmDeletionButton.addEventListener(
     'click',
     deleteMovieHandler.bind(null, movieId)
@@ -89,7 +86,6 @@ const closeMovieModal = () => {
 };
 
 const showMovieModal = () => {
-  // function() {}
   form.classList.add('visible');
   toggleBackdrop();
 };
@@ -107,16 +103,16 @@ const cancelAddMovieHandler = () => {
 };
 
 const addMovieHandler = () => {
-  const titleValue = userInputs[0].value;
-  const imageUrlValue = userInputs[1].value;
-  const ratingValue = userInputs[2].value;
+  const title = userInputs[0].value;
+  const image = userInputs[1].value;
+  const rating = userInputs[2].value;
 
   if (
-    titleValue.trim() === '' ||
-    imageUrlValue.trim() === '' ||
-    ratingValue.trim() === '' ||
-    +ratingValue < 1 ||
-    +ratingValue > 5
+    title.trim() === '' ||
+    image.trim() === '' ||
+    rating.trim() === '' ||
+    +rating < 1 ||
+    +rating > 5
   ) {
     alert('Please enter valid values (rating between 1 and 5).');
     return;
@@ -124,9 +120,9 @@ const addMovieHandler = () => {
 
   const newMovie = {
     id: Math.random().toString(),
-    title: titleValue,
-    image: imageUrlValue,
-    rating: ratingValue
+    title: title,
+    image: image,
+    rating: rating
   };
 
   movies.push(newMovie);
@@ -145,7 +141,7 @@ const addMovieHandler = () => {
 
 const backdropClickHandler = () => {
   closeMovieModal();
-  closeMovieDeletionModal();
+  deleteMovieClose();
   clearMovieInput();
 };
 
