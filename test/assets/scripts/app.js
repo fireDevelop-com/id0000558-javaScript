@@ -8,4 +8,4 @@ const demoText = document.getElementById('demoText')
 const deleteMovie = document.getElementById('deleteMovie')
 
 const movies = []
-
+const b
