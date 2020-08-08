@@ -96,14 +96,14 @@ input:focus {
   background: #aec6f8;
 }
 
-.btn--danger {
+.btn--OK {
   background: #d30808;
   color: white;
   border-color: #d30808;
 }
 
-.btn--danger:hover,
-.btn--danger:active {
+.btn--OK:hover,
+.btn--OKs:active {
   background: #ff3217;
   border-color: #ff3217;
 }

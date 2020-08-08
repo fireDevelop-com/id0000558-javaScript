@@ -46,11 +46,11 @@ const deleteMovieHandlerStart = movieId => {
   toggleBackdrop();
 
   const deleteMovieCancel = deleteMovie.querySelector('.btn--cancel');
-  let deleteMovieOK = deleteMovie.querySelector('.btn--danger');
+  let deleteMovieOK = deleteMovie.querySelector('.btn--OK');
 
   deleteMovieOK.replaceWith(deleteMovieOK.cloneNode(true));
 
-  deleteMovieOK = deleteMovie.querySelector('.btn--danger');
+  deleteMovieOK = deleteMovie.querySelector('.btn--OK');
     
   deleteMovieCancel.removeEventListener('click', deleteMovieClose);
 
