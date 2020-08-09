@@ -29,17 +29,17 @@ const backdrop = () => {
 
 const backdropClose = () => {
   closeForm();
-  deleteMovieClose();
   clearForm();
+  deleteMovieClose();
 };
 
 
 
 // FORM
-const addMovieaddMovieCancel = () => {
+const addMovieAddMovieCancel = () => {
   closeForm();
-  backdrop();
   clearForm();
+  backdrop();
 };
 
 const addMovie = () => {
@@ -168,5 +168,5 @@ const newMovieRender = (id, title, image, rating) => {
 
 addMovieElement.addEventListener('click', addMovie);
 backdropElement.addEventListener('click', backdropClose);
-addMovieCancelElement.addEventListener('click', addMovieaddMovieCancel);
+addMovieCancelElement.addEventListener('click', addMovieAddMovieCancel);
 addMovieOKElement.addEventListener('click', addMovieOK);
