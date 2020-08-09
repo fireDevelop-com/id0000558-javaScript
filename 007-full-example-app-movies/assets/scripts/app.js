@@ -66,10 +66,7 @@ const addMovieOK = () => {
   const image = userInputs[1].value;
   const rating = userInputs[2].value;
 
-  if (
-    title.trim() === '' || image.trim() === '' || rating.trim() === '' ||
-    +rating < 1 || +rating > 5
-  ) {
+  if (title.trim() === '' || image.trim() === '' || rating.trim() === '' ||+rating < 1 || +rating > 5) {
     alert('Please enter valid values (rating between 1 and 5).');
     return;
   }
