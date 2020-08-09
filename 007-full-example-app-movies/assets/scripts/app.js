@@ -1,6 +1,6 @@
 const form = document.getElementById('form');
 const addMovieElement = document.querySelector('header button');
-const backdrop = document.getElementById('backdrop');
+const backdropElement = document.getElementById('backdropElement');
 const addMovieCancelElement = form.querySelector('.btn--cancel');
 const addMovieOKElement = addMovieCancelElement.nextElementSibling;
 const userInputs = form.querySelectorAll('input');
@@ -23,8 +23,8 @@ const updateUI = () => {
 
 
 // BACKDROP
-const backdropToggle = () => {
-  backdrop.classList.toggle('visible');
+const backdrop = () => {
+  backdropElement.classList.toggle('visible');
 };
 
 const backdropClose = () => {
@@ -38,13 +38,13 @@ const backdropClose = () => {
 // FORM
 const addMovieaddMovieCancel = () => {
   closeForm();
-  backdropToggle();
+  backdrop();
   clearForm();
 };
 
 const addMovie = () => {
   form.classList.add('visible');
-  backdropToggle();
+  backdrop();
 };
 
 const closeForm = () => {
@@ -62,7 +62,7 @@ const clearForm = () => {
 // DELETE MOVIE
 
 const deleteMovieClose = () => {
-  backdropToggle();
+  backdrop();
   deleteMovie.classList.remove('visible');
 };
 
@@ -83,7 +83,7 @@ const deleteMovieHandler = movieId => {
 
 const deleteMovieHandlerStart = movieId => {
   deleteMovie.classList.add('visible');
-  backdropToggle();
+  backdrop();
 
   const deleteMovieCancel = deleteMovie.querySelector('.btn--cancel');
   let deleteMovieOK = deleteMovie.querySelector('.btn--OK');
@@ -131,7 +131,7 @@ const addMovieOK = () => {
   movies.push(newMovie);
   console.log(movies);
   closeForm();
-  backdropToggle();
+  backdrop();
   clearForm();
   newMovieRender(
     newMovie.id,
@@ -167,6 +167,6 @@ const newMovieRender = (id, title, image, rating) => {
 
 
 addMovieElement.addEventListener('click', addMovie);
-backdrop.addEventListener('click', backdropClose);
+backdropElement.addEventListener('click', backdropClose);
 addMovieCancelElement.addEventListener('click', addMovieaddMovieCancel);
 addMovieOKElement.addEventListener('click', addMovieOK);
