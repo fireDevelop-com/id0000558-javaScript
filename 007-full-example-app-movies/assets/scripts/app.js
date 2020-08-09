@@ -1,8 +1,8 @@
 const form = document.getElementById('form');
-const addMovie = document.querySelector('header button');
+const addMovieElement = document.querySelector('header button');
 const backdrop = document.getElementById('backdrop');
-const addMovieCancel = form.querySelector('.btn--cancel');
-const addMovieOK = addMovieCancel.nextElementSibling;
+const addMovieCancelElement = form.querySelector('.btn--cancel');
+const addMovieOKElement = addMovieCancelElement.nextElementSibling;
 const userInputs = form.querySelectorAll('input');
 const demoText = document.getElementById('demoText');
 const deleteMovie = document.getElementById('deleteMovie');
@@ -23,11 +23,11 @@ const updateUI = () => {
 
 
 // BACKDROP
-const toggleBackdrop = () => {
+const backdropToggle = () => {
   backdrop.classList.toggle('visible');
 };
 
-const backdropHandler = () => {
+const backdropClose = () => {
   closeForm();
   deleteMovieClose();
   clearForm();
@@ -36,15 +36,15 @@ const backdropHandler = () => {
 
 
 // FORM
-const addMovieCancelHandler = () => {
+const addMovieaddMovieCancel = () => {
   closeForm();
-  toggleBackdrop();
+  backdropToggle();
   clearForm();
 };
 
-const addMovieHandler = () => {
+const addMovie = () => {
   form.classList.add('visible');
-  toggleBackdrop();
+  backdropToggle();
 };
 
 const closeForm = () => {
@@ -62,7 +62,7 @@ const clearForm = () => {
 // DELETE MOVIE
 
 const deleteMovieClose = () => {
-  toggleBackdrop();
+  backdropToggle();
   deleteMovie.classList.remove('visible');
 };
 
@@ -83,7 +83,7 @@ const deleteMovieHandler = movieId => {
 
 const deleteMovieHandlerStart = movieId => {
   deleteMovie.classList.add('visible');
-  toggleBackdrop();
+  backdropToggle();
 
   const deleteMovieCancel = deleteMovie.querySelector('.btn--cancel');
   let deleteMovieOK = deleteMovie.querySelector('.btn--OK');
@@ -105,7 +105,7 @@ const deleteMovieHandlerStart = movieId => {
 
 // ADD MOVIE
 
-const addMovieOKHandler = () => {
+const addMovieOK = () => {
   const title = userInputs[0].value;
   const image = userInputs[1].value;
   const rating = userInputs[2].value;
@@ -131,7 +131,7 @@ const addMovieOKHandler = () => {
   movies.push(newMovie);
   console.log(movies);
   closeForm();
-  toggleBackdrop();
+  backdropToggle();
   clearForm();
   newMovieRender(
     newMovie.id,
@@ -166,7 +166,7 @@ const newMovieRender = (id, title, image, rating) => {
 
 
 
-addMovie.addEventListener('click', addMovieHandler);
-backdrop.addEventListener('click', backdropHandler);
-addMovieCancel.addEventListener('click', addMovieCancelHandler);
-addMovieOK.addEventListener('click', addMovieOKHandler);
+addMovieElement.addEventListener('click', addMovie);
+backdrop.addEventListener('click', backdropClose);
+addMovieCancelElement.addEventListener('click', addMovieaddMovieCancel);
+addMovieOKElement.addEventListener('click', addMovieOK);
