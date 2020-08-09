@@ -8,4 +8,34 @@ const demoText = document.getElementById('demoText')
 const deleteMovie = document.getElementById('deleteMovie')
 
 const movies = []
-const b
+const toggleBackdrop = () => {
+    backdrop.classList.toggle('visible')
+}
+const updateUI = () => {
+    if(movies.length === 0){
+        demoText.style.display = 'block'
+    } else {
+        demoText.style.display = 'none'
+    }
+}
+
+const addMovieCancleHandler = () => {
+    closeForm()
+    toggleBackdrop()
+    clearForm()
+}
+
+const addMovieHandler = () => {
+    form.classList.add('visible')
+    toggleBackdrop()
+}
+
+const backdropHandler = ()  => {
+    c
+}
+
+
+addMovie.addEventListener('click', addMovieHandler)
+backdrop.addEventListener('click', backdropHandler)
+addMovieCancel.addEventListener('click', addMovieCancelHandler)
+addMovieOK.addEventListener('click', addMovieOKHandler)

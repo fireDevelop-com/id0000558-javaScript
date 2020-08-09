@@ -9,10 +9,9 @@ const deleteMovie = document.getElementById('deleteMovie');
 
 const movies = [];
 
-const toggleBackdrop = () => {
-  backdrop.classList.toggle('visible');
-};
 
+
+// DEMOTEXT
 const updateUI = () => {
   if (movies.length === 0) {
     demoText.style.display = 'block';
@@ -20,6 +19,47 @@ const updateUI = () => {
     demoText.style.display = 'none';
   }
 };
+
+
+
+// BACKDROP
+const toggleBackdrop = () => {
+  backdrop.classList.toggle('visible');
+};
+
+const backdropHandler = () => {
+  closeForm();
+  deleteMovieClose();
+  clearForm();
+};
+
+
+
+// FORM
+const addMovieCancelHandler = () => {
+  closeForm();
+  toggleBackdrop();
+  clearForm();
+};
+
+const addMovieHandler = () => {
+  form.classList.add('visible');
+  toggleBackdrop();
+};
+
+const closeForm = () => {
+  form.classList.remove('visible');
+};
+
+const clearForm = () => {
+  for (const usrInput of userInputs) {
+    usrInput.value = '';
+  }
+};
+
+
+
+// DELETE MOVIE
 
 const deleteMovieClose = () => {
   toggleBackdrop();
@@ -61,46 +101,9 @@ const deleteMovieHandlerStart = movieId => {
   );
 };
 
-const newMovieRender = (id, title, image, rating) => {
-  const newMovie = document.createElement('li');
-  newMovie.className = 'movie-element';
-  newMovie.innerHTML = `
-    <div class="movie-element__image">
-      <img src="${image}" alt="${title}">
-    </div>
-    <div class="movie-element__info">
-      <h2>${title}</h2>
-      <p>${rating}/5 stars</p>
-    </div>
-  `;
-  newMovie.addEventListener(
-    'click',
-    deleteMovieHandlerStart.bind(null, id)
-  );
-  const listRoot = document.getElementById('movie-list');
-  listRoot.append(newMovie);
-};
 
-const closeForm = () => {
-  form.classList.remove('visible');
-};
 
-const addMovieHandler = () => {
-  form.classList.add('visible');
-  toggleBackdrop();
-};
-
-const clearForm = () => {
-  for (const usrInput of userInputs) {
-    usrInput.value = '';
-  }
-};
-
-const addMovieCancelHandler = () => {
-  closeForm();
-  toggleBackdrop();
-  clearForm();
-};
+// ADD MOVIE
 
 const addMovieOKHandler = () => {
   const title = userInputs[0].value;
@@ -139,11 +142,29 @@ const addMovieOKHandler = () => {
   updateUI();
 };
 
-const backdropHandler = () => {
-  closeForm();
-  deleteMovieClose();
-  clearForm();
+const newMovieRender = (id, title, image, rating) => {
+  const newMovie = document.createElement('li');
+  newMovie.className = 'movie-element';
+  newMovie.innerHTML = `
+    <div class="movie-element__image">
+      <img src="${image}" alt="${title}">
+    </div>
+    <div class="movie-element__info">
+      <h2>${title}</h2>
+      <p>${rating}/5 stars</p>
+    </div>
+  `;
+  newMovie.addEventListener(
+    'click',
+    deleteMovieHandlerStart.bind(null, id)
+  );
+  const listRoot = document.getElementById('movie-list');
+  listRoot.append(newMovie);
 };
+
+
+
+
 
 addMovie.addEventListener('click', addMovieHandler);
 backdrop.addEventListener('click', backdropHandler);
