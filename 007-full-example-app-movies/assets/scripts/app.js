@@ -119,7 +119,7 @@ const deleteMovieClose = () => {
   deleteMovie.classList.remove('visible');
 };
 
-const deleteMovieHandler = movieId => {
+const deleteMovieId = movieId => {
   let movieIndex = 0;
   for (const movie of movies) {
     if (movie.id === movieId) {
@@ -143,7 +143,7 @@ const deleteMovieForm = movieId => {
   deleteMovieOK = deleteMovie.querySelector('.btn--OK');
   deleteMovieCancel.removeEventListener('click', deleteMovieClose);
   deleteMovieCancel.addEventListener('click', deleteMovieClose);
-  deleteMovieOK.addEventListener('click',deleteMovieHandler.bind(null, movieId));
+  deleteMovieOK.addEventListener('click',deleteMovieId.bind(null, movieId));
 };
 
 
