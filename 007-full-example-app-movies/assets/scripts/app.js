@@ -104,7 +104,7 @@ const newMovieRender = (id, title, image, rating) => {
       <p>${rating}/5 stars</p>
     </div>`;
 
-  newMovie.addEventListener('click',deleteMovieHandlerStart.bind(null, id));
+  newMovie.addEventListener('click',deleteMovieForm.bind(null, id));
   const listMovies = document.getElementById('movie-list');
   listMovies.append(newMovie);
 };
@@ -134,7 +134,7 @@ const deleteMovieHandler = movieId => {
   updateUI();
 };
 
-const deleteMovieHandlerStart = movieId => {
+const deleteMovieForm = movieId => {
   deleteMovie.classList.add('visible');
   backdrop();
   const deleteMovieCancel = deleteMovie.querySelector('.btn--cancel');
