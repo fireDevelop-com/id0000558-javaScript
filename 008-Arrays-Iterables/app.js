@@ -55,12 +55,32 @@ for (const x of num){
 }
 
 
+console.log(`____________________ ${id++} unshift, shift, push, pop ____________________`)
+num = [3, 4]
+num.unshift(1, 2)
+num.shift()
+num.push(5, 6)
+num.pop()
+console.log(num)
 
 
+console.log(`____________________ ${id++} create empty Index until desired place ____________________`)
+num = [3, 4]
+num[10]=10
+console.log(num)
 
 
+console.log(`____________________ ${id++} splice (index,qty) ____________________`)
+num = [2, 3]
+num.splice(0,0,1)
+console.log(num)
 
+num.splice(1,0,'one')
+console.log(num)
 
+num = [1, 2, 3]
+num.splice(0,1,'one')
+console.log(num)
 
 // // const yetMoreNumbers = Array.of(1, 2);
 // // console.log(yetMoreNumbers);
