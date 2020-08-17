@@ -1,24 +1,31 @@
 let id = 0
 let num
+
+
 console.log(`____________________ ${id++} Array example ____________________`)
 num = [1, 2, 3]
 console.log(num)
+
 
 console.log(`____________________ ${id++} Array example ____________________`)
 num = Array (1, 2, 3)
 console.log(num)
 
+
 console.log(`____________________ ${id++} Array example ____________________`)
 num = new Array (1, 2, 3)
 console.log(num)
+
 
 console.log(`____________________ ${id++} Array example ____________________`)
 num = Array.of (1, 2, 3)
 console.log(num)
 
+
 console.log(`____________________ ${id++} Error empty if only one index ____________________`)
 num = Array(5)
 console.log(num)
+
 
 console.log(`____________________ ${id++} Array Splite ____________________`)
 num = Array.from ("123")
@@ -26,9 +33,34 @@ console.log(num)
 num = Array.from ("Some Text")
 console.log(num)
 
+
 console.log(`____________________ ${id++} NodeList ____________________`)
 num = document.querySelectorAll('li')
 console.log(num)
+
+
+console.log(`____________________ ${id++} Array String ____________________`)
+num = [01, 'Jhon', {country: ['US']}]
+console.log(num)
+
+
+console.log(`____________________ ${id++} Multi-dimension Nested Analitics Data ____________________`)
+num = [[-1, 1.5], [2, -2.5]]
+console.log(num)
+
+for (const x of num){
+    for(y of x){
+        console.log(y)
+    }
+}
+
+
+
+
+
+
+
+
 
 // // const yetMoreNumbers = Array.of(1, 2);
 // // console.log(yetMoreNumbers);
