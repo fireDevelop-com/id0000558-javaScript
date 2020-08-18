@@ -82,6 +82,7 @@ num = [1, 2, 3]
 num.splice(0,1,'one')
 console.log(num)
 
+
 // // const yetMoreNumbers = Array.of(1, 2);
 // // console.log(yetMoreNumbers);
 
