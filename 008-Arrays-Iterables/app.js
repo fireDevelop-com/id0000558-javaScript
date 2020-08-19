@@ -1,31 +1,24 @@
 let id = 0
 let num
-
-
 console.log(`____________________ ${id++} Array example ____________________`)
 num = [1, 2, 3]
 console.log(num)
-
 
 console.log(`____________________ ${id++} Array example ____________________`)
 num = Array (1, 2, 3)
 console.log(num)
 
-
 console.log(`____________________ ${id++} Array example ____________________`)
 num = new Array (1, 2, 3)
 console.log(num)
-
 
 console.log(`____________________ ${id++} Array example ____________________`)
 num = Array.of (1, 2, 3)
 console.log(num)
 
-
 console.log(`____________________ ${id++} Error empty if only one index ____________________`)
 num = Array(5)
 console.log(num)
-
 
 console.log(`____________________ ${id++} Array Splite ____________________`)
 num = Array.from ("123")
@@ -33,10 +26,11 @@ console.log(num)
 num = Array.from ("Some Text")
 console.log(num)
 
-
 console.log(`____________________ ${id++} NodeList ____________________`)
 num = document.querySelectorAll('li')
 console.log(num)
+
+
 
 
 console.log(`____________________ ${id++} Array String ____________________`)
@@ -78,10 +72,66 @@ console.log(num)
 num.splice(1,0,'one')
 console.log(num)
 
+
+console.log(`____________________ ${id++} splice add ____________________`)
 num = [1, 2, 3]
 num.splice(0,1,'one')
 console.log(num)
 
+
+console.log(`____________________ ${id++} splice remove from last element ____________________`)
+num = [1, 2, 3]
+num.splice(-1, 1)
+console.log(num)
+
+
+console.log(`____________________ ${id++} slice point to old memory ____________________`)
+num = [1, 2, 3]
+num2 = num
+num.push(4)
+console.log(num, num2) // [1, 2, 3, 4] = [1, 2, 3, 4] 
+
+num2 = num.slice()
+num.push(5)
+console.log(num, num2) // [1, 2, 3, 4, 5] ≠ [1, 2, 3, 4] 
+
+num2 = num.slice(3, 5)
+console.log(num2) //[4, 5]
+
+num2 = num.slice(-3, -1)
+console.log(num2) //[3, 4]
+
+
+console.log(`____________________ ${id++} concat ____________________`)
+num = [1, 2, 3]
+num2 = num.concat(4, 5)
+console.log(num2) // [1, 2, 3, 4, 5]
+
+num.push(6)
+console.log(num2) // [1, 2, 3, 4, 5]
+
+
+
+console.log(`____________________ ${id++} indexOf ____________________`)
+num = [1, 2, 3, 3]
+console.log (num.indexOf(3)) // output 2. You only get the FIRST match
+console.log (num.lastIndexOf(3)) // output 3. You only get the LAST match
+
+
+console.log(`____________________ ${id++} indexOf -1 ____________________`)
+num = [{name:'one'}, {name:'two'}]
+console.log (num.indexOf({name:'one'})) // output -1. mean can`t find.
+
+
+console.log(`____________________ ${id++} find - works with real index no copies like splice ____________________`)
+num = [1, 2, 3]
+
+function findNum (x) {
+    return x = 3
+          
+}
+num2 = num.find(findNum)
+console.log(num2)
 
 // // const yetMoreNumbers = Array.of(1, 2);
 // // console.log(yetMoreNumbers);
