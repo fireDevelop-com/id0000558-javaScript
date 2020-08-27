@@ -1,24 +1,33 @@
 let id = 0
-let num
+let sum = 0
+let num, num2, price, prices, tax, total, result, object
+
+
+
 console.log(`____________________ ${id++} Array example ____________________`)
 num = [1, 2, 3]
 console.log(num)
+
 
 console.log(`____________________ ${id++} Array example ____________________`)
 num = Array (1, 2, 3)
 console.log(num)
 
+
 console.log(`____________________ ${id++} Array example ____________________`)
 num = new Array (1, 2, 3)
 console.log(num)
+
 
 console.log(`____________________ ${id++} Array example ____________________`)
 num = Array.of (1, 2, 3)
 console.log(num)
 
+
 console.log(`____________________ ${id++} Error empty if only one index ____________________`)
 num = Array(5)
 console.log(num)
+
 
 console.log(`____________________ ${id++} Array Splite ____________________`)
 num = Array.from ("123")
@@ -26,11 +35,10 @@ console.log(num)
 num = Array.from ("Some Text")
 console.log(num)
 
+
 console.log(`____________________ ${id++} NodeList ____________________`)
 num = document.querySelectorAll('li')
 console.log(num)
-
-
 
 
 console.log(`____________________ ${id++} Array String ____________________`)
@@ -111,7 +119,6 @@ num.push(6)
 console.log(num2) // [1, 2, 3, 4, 5]
 
 
-
 console.log(`____________________ ${id++} indexOf ____________________`)
 num = [1, 2, 3, 3]
 console.log (num.indexOf(3)) // output 2. You only get the FIRST match
@@ -133,157 +140,121 @@ function findNum (x) {
 num2 = num.find(findNum)
 console.log(num2)
 
-// // const yetMoreNumbers = Array.of(1, 2);
-// // console.log(yetMoreNumbers);
+console.log(`____________________ ${id++} find ____________________`)
 
-// const listItems = document.querySelectorAll('li');
-// console.log(listItems);
 
-// const arrayListItems = Array.from(listItems);
-// console.log(arrayListItems);
+var ages = [3, 10, 19, 20];
+function checkAdult(age) {
+  return age >= 18;
+}
+function myFunction() {
+  return ages.find(checkAdult)
+}
+console.log(myFunction())
 
-// const hobbies = ['Cooking', 'Sports'];
-// const personalData = [30, 'Max', {moreDetail: []}];
+console.log(`____________________ ${id++} find - Find an object in an array by one of its properties ____________________`)
+ num = [
+    {id: 1, name: 'one'},
+    {id: 2, name: 'two'},
+    {id: 3, name: 'three'}
+  ]
+  function f1(x) { 
+    return x.id === 3
+  }
+  console.log(num.find(f1))
 
-// const analyticsData = [[1, 1.6], [-5.4, 2.1]];
 
-// for (const data of analyticsData) {
-//   for (const dataPoint of data) {
-//     console.log(dataPoint);
-//   }
-// }
+console.log(`____________________ ${id++} find - Using arrow function and destructuring ____________________`)
 
-// console.log(personalData[1]);
 
-// const hobbies = ['Sports', 'Cooking'];
-// hobbies.push('Reading');
-// hobbies.unshift('Coding');
-// const poppedValue = hobbies.pop();
-// hobbies.shift();
-// console.log(hobbies);
+console.log(`____________________ ${id++} for ____________________`)
+prices = [10, 20, 30]
+tax = 1.21
+total = []
+for (price of prices){
+    total.push(price * tax)
+}
+console.log(total)
 
-// hobbies[1] = 'Coding';
-// // hobbies[5] = 'Reading'; // rarely used
-// console.log(hobbies, hobbies[4]);
+console.log(`____________________ ${id++} forEach ____________________`)
+prices = [10, 20, 30]
+tax = 1.21
+total = []
+prices.forEach((value, index) => {
+   object = {value: value * tax, index: index}
+  total.push(object)
+})
+console.log(total)
 
-// hobbies.splice(1, 0, 'Good Food');
-// console.log(hobbies);
 
-// const removedElements = hobbies.splice(-2, 1);
-// console.log(hobbies);
+console.log(`____________________ ${id++} forEach normal Function____________________`)
+prices = [10, 20, 30]
+prices.forEach((value) => {
+  sum += value
+})
+console.log(sum)
 
-// const testResults = [1, 5.3, 1.5, 10.99, 1.5, -5, 10];
-// // const storedResults = testResults.slice(2);
-// const storedResults = testResults.concat([3.99, 2]);
 
-// testResults.push(5.91);
+console.log(`____________________ ${id++} forEach short Function____________________`)
 
-// console.log(storedResults, testResults);
-// console.log(testResults.indexOf(1.5));
 
-// console.log(testResults.includes(10.99));
-// console.log(testResults.indexOf(10.99) !== -1);
 
-// const personData = [{ name: 'Max' }, { name: 'Manuel' }];
-// console.log(personData.indexOf({ name: 'Manuel' }));
 
-// const manuel = personData.find((person, idx, persons) => {
-//   return person.name === 'Manuel';
-// });
+console.log(`____________________ ${id++} map ____________________`)
+ prices = [10, 20, 30]
+ tax = 1.21
+ total = prices.map((value, index) => {
+   object = { value:value*tax, index:index }
+  return object
+})
+console.log(total)
 
-// manuel.name = 'Anna';
 
-// console.log(manuel, personData);
+console.log(`____________________ ${id++} sort ____________________`)
+prices = [10, 20, 30]
+total = prices.sort((a, b) => {
+  if (a > b) {
+    return -1
+  } else if (a === b) {
+    return 0
+  } else {
+    return 1
+  }
+});
+console.log(total)
+console.log(total.reverse())
 
-// const maxIndex = personData.findIndex((person, idx, persons) => {
-//   return person.name === 'Max';
-// });
 
-// console.log(maxIndex);
+console.log(`____________________ ${id++} filter ____________________`)
+prices = [10, 20, 30]
+total = prices.filter((value, index, array) => {
+  return value > 20
+})
+console.log(total)
 
-// const prices = [10.99, 5.99, 3.99, 6.59];
-// const tax = 0.19;
-// const taxAdjustedPrices = [];
 
-// // for (const price of prices) {
-// //   taxAdjustedPrices.push(price * (1 + tax));
-// // }
+console.log(`____________________ ${id++} filter shorter Function ____________________`)
+prices = [10, 20, 30]
+total = prices.filter(value => value === 10)
+console.log(total)
 
-// prices.forEach((price, idx, prices) => {
-//   const priceObj = { index: idx, taxAdjPrice: price * (1 + tax) };
-//   taxAdjustedPrices.push(priceObj);
-// });
 
-// console.log(taxAdjustedPrices);
+console.log(`____________________ ${id++} reduce ____________________`)
+prices = [1, 2, 3]
+total = prices.reduce((previousValue, currentValue) => {
+  return previousValue + currentValue
+}, 0)
+console.log(total) // output = 0 + 1 + 2 + 3 = 6
 
-// const prices = [10.99, 5.99, 3.99, 6.59];
-// const tax = 0.19;
 
-// const taxAdjustedPrices = prices.map((price, idx, prices) => {
-//   const priceObj = { index: idx, taxAdjPrice: price * (1 + tax) };
-//   return priceObj;
-// });
+console.log(`____________________ ${id++} reduce shorter function ____________________`)
+prices = [1, 2, 3]
+total = prices.reduce((previousValue, currentValue) => previousValue + currentValue, 0)
+console.log(total) // output = 0 + 1 + 2 + 3 = 6
 
-// // console.log(prices, taxAdjustedPrices);
 
-// const sortedPrices = prices.sort((a, b) => {
-//   if (a > b) {
-//     return -1;
-//   } else if (a === b) {
-//     return 0;
-//   } else {
-//     return 1;
-//   }
-// });
-// // console.log(sortedPrices.reverse());
-// console.log(sortedPrices);
+console.log(`____________________ ${id++} map reduce ____________________`)
 
-// const filteredArray = prices.filter(p => p > 6);
-
-// console.log(filteredArray);
-
-// // let sum = 0;
-
-// // prices.forEach((price) => {
-// //   sum += price
-// // });
-
-// // console.log(sum);
-
-// const sum = prices.reduce((prevValue, curValue) => prevValue + curValue, 0);
-
-// console.log(sum);
-
-// const data = 'new york;10.99;2000';
-
-// const transformedData = data.split(';');
-// transformedData[1] = +transformedData[1];
-// console.log(transformedData);
-
-// const nameFragments = ['Max', 'Schwarz'];
-// const name = nameFragments.join(' ');
-// console.log(name);
-
-// const copiedNameFragments = [...nameFragments];
-// nameFragments.push('Mr');
-// console.log(nameFragments, copiedNameFragments);
-
-// console.log(Math.min(...prices));
-
-// const persons = [{ name: 'Max', age: 30 }, { name: 'Manuel', age: 31 }];
-// const copiedPersons = persons.map(person => ({
-//   name: person.name,
-//   age: person.age
-// }));
-
-// persons.push({ name: 'Anna', age: 29 });
-// persons[0].age = 31;
-
-// console.log(persons, copiedPersons);
-
-const nameData = ['Max', 'Schwarz', 'Mr', 30];
-// const firstName = nameData[0];
-// const lastName = nameData[1];
-
-const [ firstName, lastName, ...otherInformation ] = nameData;
-console.log(firstName, lastName, otherInformation);
+prices = [{price: 1}, {price: 2}, {price: 3}];
+const transformedArray = originalArray.map(obj => obj.price); // produces [10.99, 5.99, 29.99]
+const sum = transformedArray.reduce((sumVal, curVal) => sumVal + curVal, 0);
