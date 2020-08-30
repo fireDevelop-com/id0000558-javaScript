@@ -1,6 +1,6 @@
 let id = 0
 let sum = 0
-let num, num2, price, prices, tax, total, result, object
+let num, num1, num2, price, prices, tax, total, result, object, copiedNum, users, usersCopied
 
 
 
@@ -255,6 +255,123 @@ console.log(total) // output = 0 + 1 + 2 + 3 = 6
 
 console.log(`____________________ ${id++} map reduce ____________________`)
 
-prices = [{price: 1}, {price: 2}, {price: 3}];
-const transformedArray = originalArray.map(obj => obj.price); // produces [10.99, 5.99, 29.99]
-const sum = transformedArray.reduce((sumVal, curVal) => sumVal + curVal, 0);
+prices = [{value: 1}, {value: 2}, {value: 3}];
+total = prices.map(object => object.value); // produces [10.99, 5.99, 29.99]
+console.log(total.reduce((previousValue, currentValue) => previousValue + currentValue, 0))
+
+
+console.log(`____________________ ${id++} map reduce ____________________`)
+prices = [{value: 1}, {value: 2}, {value: 3}];
+total = prices.reduce((previousValue, currentValue) => previousValue + currentValue.value, 0); // => 46.97
+console.log(total)
+
+console.log(`____________________ ${id++} map reduce ____________________`)
+prices = [{value: 1}, {value: 2}, {value: 3}];
+total = prices.map(object => object.value).reduce((previousValue, currentValue) => previousValue + currentValue, 0); // => 46.97
+console.log(total)
+
+
+console.log(`____________________ ${id++} split - separate by semicolon ____________________`)
+num = '1;2;3'
+console.log(total = num.split(';'))
+
+
+console.log(`____________________ ${id++} split - add text to string ____________________`)
+console.log(total[0] = 100+total[0])
+
+
+console.log(`____________________ ${id++} split - convert array to string ____________________`)
+num = ['one', 'two']
+console.log(num.join(' '))
+
+
+console.log(`____________________ ${id++} Spread min value ____________________`)
+num = [1, 2, 3]
+console.log(Math.min(...num))
+
+
+console.log(`____________________ ${id++} Spread push ____________________`)
+num = ['one', 'two', 'three']
+copiedNum = [...num]
+num.push('four')
+console.log(num, copiedNum)
+
+
+console.log(`____________________ ${id++} Spread push and modified by index ____________________`)
+users = [{id:1, name:'jhon'}, {id:2, name:'mery'}]
+usersCopied = [...users]
+users.push({id:3, name:'petter'})
+console.log(users, usersCopied)
+
+users[2].id = 300
+console.log(users,usersCopied)
+
+console.log(`____________________ ${id++} Spread simulation with map ____________________`)
+userCopied = users.map(users => ({
+  id: users.id,
+  name: users.name
+}))
+console.log(users,usersCopied)
+
+
+console.log(`____________________ ${id++} Spread ____________________`)
+num = ['one', 'two', 'three', 'four', 'five']
+const [ one, two, ...rest ] = num
+console.log(one, two, rest)
+
+
+console.log(`____________________ ${id++} Set has ____________________`)
+num = new Set([1, 2, 3])
+console.log(num.has(1)) // output true
+
+for( x of num.entries()){
+  console.log(x)
+}
+
+for( x of num.entries()){
+  console.log(x[0])
+}
+
+
+console.log(`____________________ ${id++} Set & map ____________________`)
+num1 = { key: 'one' }
+num2 = { key: 'two' }
+total = new Map([[num1, [{ value: 'yesterday', id: 1 }]]]) 
+console.log(total)
+console.log(total.set(num2, [{ value: 'today', id: 2 }]))
+console.log(total.get(num1))
+console.log(total.get(num2))
+
+
+console.log(`____________________ ${id++} Map entries ____________________`)
+num1 = {name: 'one'}
+num2 = {name: 'two'}
+total = new Map ([[num1, [{value:'today', id:1}]]])
+total.set(num2, [{value:'today', id:2}])
+for([key, value] of total.entries()){
+  console.log(key,value)
+}
+
+
+console.log(`____________________ ${id++} Map keys ____________________`)
+num1 = {name: 'one'}
+num2 = {name: 'two'}
+total = new Map ([[num1, [{value:'today', id:1}]]])
+total.set(num2, [{value:'today', id:2}])
+for(let key of total.keys()){
+  console.log(key)
+}
+
+
+console.log(`____________________ ${id++} Map value ____________________`)
+num1 = {name: 'one'}
+num2 = {name: 'two'}
+total = new Map ([[num1, [{value:'today', id:1}]]])
+total.set(num2, [{value:'today', id:2}])
+for(let value of total.values()){
+  console.log(value)
+}
+
+
+console.log(`____________________ ${id++} Map size ____________________`)
+console.log(total.size);
