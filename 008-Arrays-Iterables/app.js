@@ -375,3 +375,41 @@ for(let value of total.values()){
 
 console.log(`____________________ ${id++} Map size ____________________`)
 console.log(total.size);
+
+
+console.log(`____________________ ${id++} WeakSeat - keep array in garbage collecting ____________________`)
+num = {name:'one'}
+total = new WeakSet()
+total.add(num)
+num = null
+console.log(total)
+
+
+console.log(`____________________ ${id++} WeakMap ____________________`)
+num = {name:'one'}
+
+total = new WeakMap()
+total.set(num, 'extra info')
+num = null
+console.log(total)
+
+
+console.log(`____________________ ${id++} Object & Primitive values____________________`)
+users = {
+  name: 'Max',
+  age: 29,
+  hobbies: ['Sports', 'Cooking'],
+  address: {
+      street: 'Some Street 5',
+      stateId: 5,
+      country: 'Germany',
+      phone: {
+          number: 690456777,
+          isMobile: true
+      }
+  },
+}
+users.isAdmin = true // create property
+users.age=30 // modify property
+users.age=31 // modify property
+console.log(users)
