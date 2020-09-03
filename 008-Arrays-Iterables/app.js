@@ -394,22 +394,9 @@ num = null
 console.log(total)
 
 
-console.log(`____________________ ${id++} Object & Primitive values____________________`)
-users = {
-  name: 'Max',
-  age: 29,
-  hobbies: ['Sports', 'Cooking'],
-  address: {
-      street: 'Some Street 5',
-      stateId: 5,
-      country: 'Germany',
-      phone: {
-          number: 690456777,
-          isMobile: true
-      }
-  },
-}
-users.isAdmin = true // create property
-users.age=30 // modify property
-users.age=31 // modify property
-console.log(users)
+console.log(`____________________ ${id++} Exercise 1 ____________________`)
+num = [1, 2, 3, 4, 5, 6, 7]
+total = num.filter((value) => {
+  return value
+})
+console.log(total)
