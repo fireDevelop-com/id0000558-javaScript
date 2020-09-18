@@ -1,14 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Mini-Shop</title>
-    <link rel="stylesheet" href="assets/styles/app.css">
-    <script src="assets/scripts/app.js" defer></script>
-  </head> 
+    <meta charset="utf-8"/>
+    <title>Object basics: Task 2</title>
+    <style>
+      p {
+        color: purple;
+        margin: 0.5em 0;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+
   <body>
-    <div id="app"></div>
+
+    <section class="preview">
+
+
+
+    </section>
+
   </body>
+  <script>
+    let bandInfo;
+    bandInfo = {
+     name: ['roling', 'u2'],
+     nationality: ['US', 'Spain'],
+     genre: ['rock', 'pop'],
+     members: [4, 6],
+     formed: [1980, 2000],
+     split: ['false', '2018'],
+     albums: {
+       name: ['death', 'moral'],
+       released: [1987, 1990],
+     },
+     show: function (){
+       console.log('Biography' + this.name)
+     }
+     
+    }
+ const showBand = new bandInfo()
+
+
+
+    // Don't edit the code below here!
+
+    const section = document.querySelector('section');
+    let para1 = document.createElement('p');
+    para1.textContent = bandInfo;
+    section.appendChild(para1);
+  </script>
+
 </html>

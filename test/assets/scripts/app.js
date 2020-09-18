@@ -1,40 +1,25 @@
-class product{
-    constructor(title, image, desc, price){
-        this.title = title
-        this.imageUrl = image
-        this.description = desc
-        this.price = price
-    }
+let cat = {
+  name : 'Bertie',
+  breed : 'Cymric',
+  color : 'white',
+  greeting: function() {
+    console.log('Meow!');
+  }
 }
+catName = cat['name']
+// Put your code here
+cat.greeting
+cat.color = 'black'
 
-class ProductItem{
-    constructor(product){
-        this.product = product
-    }
-    addToCart(){
-        console.log('adding to cart...')
-        console.log(this.product)
-    }
+// Don't edit the code below here
 
-    render(){
-        const prodEl = document.createElement('li')
-        prodEl.className = 'product-item'
-        prodEl.innerHTML = `
-            <div>
-                <img src="${this.product.imageUrl}" alt="${this.product.title}">
-                <h2>${this.product.title}</h2>
-                <h3>\$${this.product.description}</h3>
-                <p>${this.product.price}</p>
-            </div>
-        `
-        const addCartButton = prodEl.querySelector('button')
-        addCartButton.addEventListener('click', this.addToCart.bind(this))
-        return prodEl
-    }
-}
 
-class ProductList{
-    products = [
-        new Product('item1', 'desc1', '')
-    ]
-}
+let para1 = document.createElement('p');
+let para2 = document.createElement('p');
+
+para1.textContent = `The cat's name is ${ catName }.`;
+para2.textContent = `The cat's color is ${ cat.color }.`;
+
+section.appendChild(para1);
+section.appendChild(para2);
+    
