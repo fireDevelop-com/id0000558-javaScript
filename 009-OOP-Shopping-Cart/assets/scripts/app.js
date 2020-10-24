@@ -79,7 +79,7 @@ class ProductList {
     )
   ];
 
-  constructor() {}
+  //constructor() {}
   render() {
     const prodList = document.createElement('ul');
     prodList.className = 'product-list';
