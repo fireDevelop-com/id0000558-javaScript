@@ -1,9 +1,4 @@
 class Product {
-  // title = 'DEFAULT';
-  // imageUrl;
-  // description;
-  // price;
-
   constructor(title, image, desc, price) {
     this.title = title;
     this.imageUrl = image;
@@ -49,16 +44,12 @@ class ShoppingCart extends Component {
 
   set cartItems(value) {
     this.items = value;
-    this.totalOutput.innerHTML = `<h2>Total: \$${this.totalAmount.toFixed(
-      2
-    )}</h2>`;
+    this.totalOutput.innerHTML = `<h2>Total: \$${this.totalAmount.toFixed(2)}</h2>`;
   }
 
   get totalAmount() {
     const sum = this.items.reduce(
-      (prevValue, curItem) => prevValue + curItem.price,
-      0
-    );
+      (prevValue, curItem) => prevValue + curItem.price,0);
     return sum;
   }
 
@@ -130,18 +121,8 @@ class ProductList extends Component {
 
   fetchProducts() {
     this.#products = [
-      new Product(
-        'A Pillow',
-        'https://www.maxpixel.net/static/photo/2x/Soft-Pillow-Green-Decoration-Deco-Snuggle-1241878.jpg',
-        'A soft pillow!',
-        19.99
-      ),
-      new Product(
-        'A Carpet',
-        'https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Ardabil_Carpet.jpg/397px-Ardabil_Carpet.jpg',
-        'A carpet which you might like - or not.',
-        89.99
-      )
+      new Product('A Pillow','https://www.maxpixel.net/static/photo/2x/Soft-Pillow-Green-Decoration-Deco-Snuggle-1241878.jpg','A soft pillow!',19.99),
+      new Product('A Carpet','https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Ardabil_Carpet.jpg/397px-Ardabil_Carpet.jpg','A carpet which you might like - or not.',89.99)
     ];
     this.renderProducts();
   }
