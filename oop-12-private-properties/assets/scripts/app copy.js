@@ -1,10 +1,6 @@
 class Product {
-  // title = 'DEFAULT';
-  // imageUrl;
-  // description;
-  // price;
-
-  constructor(title, image, desc, price) {
+  
+  (title, image, desc, price) {
     this.title = title;
     this.imageUrl = image;
     this.description = desc;
@@ -20,8 +16,8 @@ class ElementAttribute {
 }
 
 class Component {
-  constructor(app, shouldRender = true) {
-    this.app = app;
+  constructor(renderHookId, shouldRender = true) {
+    this.hookId = renderHookId;
     if (shouldRender) {
       this.render();
     }
@@ -39,7 +35,7 @@ class Component {
         rootElement.setAttribute(attr.name, attr.value);
       }
     }
-    document.getElementById(this.app).append(rootElement);
+    document.getElementById(this.hookId).append(rootElement);
     return rootElement;
   }
 }
@@ -58,8 +54,8 @@ class ShoppingCart extends Component {
     return sum;
   }
 
-  constructor(app) {
-    super(app, false);
+  constructor(renderHookId) {
+    super(renderHookId, false);
     this.orderProducts = () => {
       console.log('Ordering...');
       console.log(this.items);
@@ -75,20 +71,17 @@ class ShoppingCart extends Component {
 
   render() {
     const cartEl = this.createRootElement('section', 'cart');
-    cartEl.innerHTML = `
-      <h2>Total: \$${0}</h2>
-      <button>Order Now!</button>
-    `;
+    cartEl.innerHTML = `<h2>Total: \$${0}</h2>
+                        <button>Order Now!</button>`
     const orderButton = cartEl.querySelector('button');
-    // orderButton.addEventListener('click', () => this.orderProducts());
     orderButton.addEventListener('click', this.orderProducts);
     this.totalOutput = cartEl.querySelector('h2');
   }
 }
 
 class ProductItem extends Component {
-  constructor(product, app) {
-    super(app, false);
+  constructor(product, renderHookId) {
+    super(renderHookId, false);
     this.product = product;
     this.render();
   }
@@ -118,8 +111,8 @@ class ProductItem extends Component {
 class ProductList extends Component {
   #products = [];
 
-  constructor(app) {
-    super(app, false);
+  constructor(renderHookId) {
+    super(renderHookId, false);
     this.render();
     this.fetchProducts();
   }
