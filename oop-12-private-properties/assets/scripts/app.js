@@ -15,14 +15,9 @@ class ElementAttribute {
 }
 
 class Component {
-  constructor(app, shouldRender = true) {
+  constructor(app) {
     this.app = app
-    if (shouldRender) {
-      this.render()
-    }
   }
-
-  render() {}
 
   createRootElement(tag, cssClasses, attributes) {
     const rootElement = document.createElement(tag)
@@ -55,10 +50,6 @@ class ShoppingCart extends Component {
 
   constructor(app) {
     super(app, false)
-    this.orderProducts = () => {
-      console.log('Ordering...')
-      console.log(this.items)
-    }
     this.render()
   }
 
@@ -70,10 +61,7 @@ class ShoppingCart extends Component {
 
   render() {
     const cartEl = this.createRootElement('section', 'cart')
-    cartEl.innerHTML = `
-      <h2>Total: \$${0}</h2>
-      <button>Order Now!</button>
-    `
+    cartEl.innerHTML = `<h2>Total: \$${0}</h2><button>Order Now!</button>`
     const orderButton = cartEl.querySelector('button')
     // orderButton.addEventListener('click', () => this.orderProducts())
     orderButton.addEventListener('click', this.orderProducts)
@@ -83,7 +71,7 @@ class ShoppingCart extends Component {
 
 class ProductItem extends Component {
   constructor(product, app) {
-    super(app, false)
+    super(app)
     this.product = product
     this.render()
   }
@@ -114,7 +102,7 @@ class ProductList extends Component {
   #products = []
 
   constructor(app) {
-    super(app, false)
+    super(app)
     this.render()
     this.fetchProducts()
   }
@@ -129,13 +117,13 @@ class ProductList extends Component {
 
   renderProducts() {
     for (const prod of this.#products) {
-      new ProductItem(prod, 'prod-list')
+      new ProductItem(prod, 'id-product-list')
     }
   }
 
   render() {
     this.createRootElement('ul', 'product-list', [
-      new ElementAttribute('id', 'prod-list')
+      new ElementAttribute('id', 'id-product-list')
     ])
     if (this.#products && this.#products.length > 0) {
       this.renderProducts()
