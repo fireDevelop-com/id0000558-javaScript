@@ -34,15 +34,15 @@ class Component {
   }
 }
 
-class ShoppingCart extends Component {
+class Cart extends Component {
   items = []
 
-  set cartItems(value) {
+  set setTotal(value) {
     this.items = value
-    this.totalOutput.innerHTML = `<h2>Total: \$${this.totalAmount.toFixed(2)}</h2>`
+    this.total.innerHTML = `<h2>Total: \$${this.getTotal.toFixed(2)}</h2>`
   }
 
-  get totalAmount() {
+  get getTotal() {
     const sum = this.items.reduce(
       (prevValue, curItem) => prevValue + curItem.price,0)
     return sum
@@ -56,16 +56,15 @@ class ShoppingCart extends Component {
   addProduct(product) {
     const updatedItems = [...this.items]
     updatedItems.push(product)
-    this.cartItems = updatedItems
+    this.setTotal = updatedItems
   }
 
   render() {
     const cartEl = this.createRootElement('section', 'cart')
     cartEl.innerHTML = `<h2>Total: \$${0}</h2><button>Order Now!</button>`
     const orderButton = cartEl.querySelector('button')
-    // orderButton.addEventListener('click', () => this.orderProducts())
     orderButton.addEventListener('click', this.orderProducts)
-    this.totalOutput = cartEl.querySelector('h2')
+    this.total = cartEl.querySelector('h2')
   }
 }
 
@@ -137,13 +136,13 @@ class Shop {
   }
 
   render() {
-    this.cart = new ShoppingCart('app')
+    this.cart = new Cart('app')
     new ProductList('app')
   }
 }
 
 class App {
-  static cart
+  
 
   static init() {
     const shop = new Shop()

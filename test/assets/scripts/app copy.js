@@ -37,12 +37,12 @@ class Component {
 class Cart extends Component {
   items = []
 
-  set setTotal(value) {
+  set cartItems(value) {
     this.items = value
-    this.total.innerHTML = `<h2>Total: \$${this.getTotal.toFixed(2)}</h2>`
+    this.totalOutput.innerHTML = `<h2>Total: \$${this.totalAmount.toFixed(2)}</h2>`
   }
 
-  get getTotal() {
+  get totalAmount() {
     const sum = this.items.reduce(
       (prevValue, curItem) => prevValue + curItem.price,0)
     return sum
@@ -56,15 +56,16 @@ class Cart extends Component {
   addProduct(product) {
     const updatedItems = [...this.items]
     updatedItems.push(product)
-    this.setTotal = updatedItems
+    this.cartItems = updatedItems
   }
 
   render() {
     const cartEl = this.createRootElement('section', 'cart')
     cartEl.innerHTML = `<h2>Total: \$${0}</h2><button>Order Now!</button>`
     const orderButton = cartEl.querySelector('button')
+    // orderButton.addEventListener('click', () => this.orderProducts())
     orderButton.addEventListener('click', this.orderProducts)
-    this.total = cartEl.querySelector('h2')
+    this.totalOutput = cartEl.querySelector('h2')
   }
 }
 
@@ -111,7 +112,7 @@ class ProductList extends Component {
       new Product('A Pillow','https://www.maxpixel.net/static/photo/2x/Soft-Pillow-Green-Decoration-Deco-Snuggle-1241878.jpg','A soft pillow!',19.99),
       new Product('A Carpet','https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Ardabil_Carpet.jpg/397px-Ardabil_Carpet.jpg','A carpet which you might like - or not.',89.99)
     ]
-    this.renderProducts() 
+    this.renderProducts()
   }
 
   renderProducts() {
