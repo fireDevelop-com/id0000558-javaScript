@@ -43,8 +43,7 @@ class Cart extends Component {
   }
 
   get getTotal() {
-    const sum = this.items.reduce(
-      (prevValue, curItem) => prevValue + curItem.price,0)
+    const sum = this.items.reduce((prevValue, curItem) => prevValue + curItem.price,0)
     return sum
   }
 
@@ -124,9 +123,6 @@ class ProductList extends Component {
     this.createRootElement('ul', 'product-list', [
       new ElementAttribute('id', 'id-product-list')
     ])
-    if (this.#products && this.#products.length > 0) {
-      this.renderProducts()
-    }
   }
 }
 
