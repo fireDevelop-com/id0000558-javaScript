@@ -64,11 +64,11 @@ class ProjectItem {
   constructor(id, updateProjectListsFunction, type) {
     this.id = id;
     this.updateProjectListsHandler = updateProjectListsFunction;
-    this.connectMoreInfoButton();
-    this.connectSwitchButton(type);
+    this.moreInfo();
+    this.switch(type);
   }
 
-  showMoreInfoHandler() {
+  moreInfoTooltip() {
     if (this.hasActiveTooltip) {
       return;
     }
@@ -79,15 +79,15 @@ class ProjectItem {
     this.hasActiveTooltip = true;
   }
 
-  connectMoreInfoButton() {
+  moreInfo() {
     const projectItemElement = document.getElementById(this.id);
     const moreInfoBtn = projectItemElement.querySelector(
       'button:first-of-type'
     );
-    moreInfoBtn.addEventListener('click', this.showMoreInfoHandler);
+    moreInfoBtn.addEventListener('click', this.moreInfoTooltip);
   }
 
-  connectSwitchButton(type) {
+  switch(type) {
     const projectItemElement = document.getElementById(this.id);
     let switchBtn = projectItemElement.querySelector('button:last-of-type');
     switchBtn = DOMHelper.clearEventListeners(switchBtn);
@@ -100,7 +100,7 @@ class ProjectItem {
 
   update(updateProjectListsFn, type) {
     this.updateProjectListsHandler = updateProjectListsFn;
-    this.connectSwitchButton(type);
+    this.switch(type);
   }
 }
 
@@ -109,16 +109,16 @@ class ProjectList {
 
   constructor(type) {
     this.type = type;
-    const prjItems = document.querySelectorAll(`#${type}-projects li`);
-    for (const prjItem of prjItems) {
+    const projectItems = document.querySelectorAll(`#${type}-projects li`);
+    for (const projectItem of projectItems) {
       this.projects.push(
-        new ProjectItem(prjItem.id, this.switchProject.bind(this), this.type)
+        new ProjectItem(projectItem.id, this.switchProject.bind(this), this.type)
       );
     }
     console.log(this.projects);
   }
 
-  setSwitchHandlerFunction(switchHandlerFunction) {
+  switchFunction(switchHandlerFunction) {
     this.switchHandler = switchHandlerFunction;
   }
 
@@ -140,10 +140,10 @@ class App {
   static init() {
     const activeProjectsList = new ProjectList('active');
     const finishedProjectsList = new ProjectList('finished');
-    activeProjectsList.setSwitchHandlerFunction(
+    activeProjectsList.switchFunction(
       finishedProjectsList.addProject.bind(finishedProjectsList)
     );
-    finishedProjectsList.setSwitchHandlerFunction(
+    finishedProjectsList.switchFunction(
       activeProjectsList.addProject.bind(activeProjectsList)
     );
   }
