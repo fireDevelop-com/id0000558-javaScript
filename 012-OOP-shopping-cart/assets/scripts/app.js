@@ -1,153 +1,152 @@
-class Product {
-  constructor(title, image, desc, price) {
-    this.title = title
-    this.imageUrl = image
-    this.description = desc
-    this.price = price
-  } 
-}
+class DOMHelper {
+  static clearEventListeners(element) {
+    const clonedElement = element.cloneNode(true);
+    element.replaceWith(clonedElement);
+    return clonedElement;
+  }
 
-class ElementAttribute {
-  constructor(attrName, attrValue) {
-    this.name = attrName
-    this.value = attrValue
+  static moveElement(elementId, newDestinationSelector) {
+    const element = document.getElementById(elementId);
+    const destinationElement = document.querySelector(newDestinationSelector);
+    destinationElement.append(element);
   }
 }
 
 class Component {
-  constructor(app) {
-    this.app = app
-  }
-
-  createRootElement(tag, cssClasses, attributes) {
-    const rootElement = document.createElement(tag)
-    if (cssClasses) {
-      rootElement.className = cssClasses
+  constructor(hostElementId, insertBefore = false) {
+    if (hostElementId) {
+      this.hostElement = document.getElementById(hostElementId);
+    } else {
+      this.hostElement = document.body;
     }
-    if (attributes && attributes.length > 0) {
-      for (const attr of attributes) {
-        rootElement.setAttribute(attr.name, attr.value)
-      }
-    }
-    document.getElementById(this.app).append(rootElement)
-    return rootElement
-  }
-}
-
-class Cart extends Component {
-  items = []
-
-  set setTotal(value) {
-    this.items = value
-    this.total.innerHTML = `<h2>Total: \$${this.getTotal.toFixed(2)}</h2>`
+    this.insertBefore = insertBefore;
   }
 
-  get getTotal() {
-    const sum = this.items.reduce((prevValue, curItem) => prevValue + curItem.price,0)
-    return sum
-  }
-
-  constructor(app) {
-    super(app, false)
-    this.render()
-  }
-
-  addProduct(product) {
-    const updatedItems = [...this.items]
-    updatedItems.push(product)
-    this.setTotal = updatedItems
-  }
-
-  render() {
-    const cartEl = this.createRootElement('section', 'cart')
-    cartEl.innerHTML = `<h2>Total: \$${0}</h2><button>Order Now!</button>`
-    const orderButton = cartEl.querySelector('button')
-    orderButton.addEventListener('click', this.orderProducts)
-    this.total = cartEl.querySelector('h2')
-  }
-}
-
-class ProductItem extends Component {
-  constructor(product, app) {
-    super(app)
-    this.product = product
-    this.render()
-  }
-
-  addToCart() {
-    App.addProductToCart(this.product)
-  }
-
-  render() {
-    const prodEl = this.createRootElement('li', 'product-item')
-    prodEl.innerHTML = `
-        <div>
-          <img src="${this.product.imageUrl}" alt="${this.product.title}" >
-          <div class="product-item__content">
-            <h2>${this.product.title}</h2>
-            <h3>\$${this.product.price}</h3>
-            <p>${this.product.description}</p>
-            <button>Add to Cart</button>
-          </div>
-        </div>
-      `
-    const addCartButton = prodEl.querySelector('button')
-    addCartButton.addEventListener('click', this.addToCart.bind(this))
-  }
-}
-
-class ProductList extends Component {
-  #products = []
-
-  constructor(app) {
-    super(app)
-    this.render()
-    this.fetchProducts()
-  }
-
-  fetchProducts() {
-    this.#products = [
-      new Product('A Pillow','https://www.maxpixel.net/static/photo/2x/Soft-Pillow-Green-Decoration-Deco-Snuggle-1241878.jpg','A soft pillow!',19.99),
-      new Product('A Carpet','https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Ardabil_Carpet.jpg/397px-Ardabil_Carpet.jpg','A carpet which you might like - or not.',89.99)
-    ]
-    this.renderProducts()
-  }
-
-  renderProducts() {
-    for (const prod of this.#products) {
-      new ProductItem(prod, 'id-product-list')
+  detach() {
+    if (this.element) {
+      this.element.remove();
+      // this.element.parentElement.removeChild(this.element);
     }
   }
 
-  render() {
-    this.createRootElement('ul', 'product-list', [
-      new ElementAttribute('id', 'id-product-list')
-    ])
+  attach() {
+    this.hostElement.insertAdjacentElement(
+      this.insertBefore ? 'afterbegin' : 'beforeend',
+      this.element
+    );
   }
 }
 
-class Shop {
-  constructor() {
-    this.render()
+class Tooltip extends Component {
+  constructor(closeNotifierFunction) {
+    super();
+    this.closeNotifier = closeNotifierFunction;
+    this.create();
   }
 
-  render() {
-    this.cart = new Cart('app')
-    new ProductList('app')
+  closeTooltip = () => {
+    this.detach();
+    this.closeNotifier();
+  };
+
+  create() {
+    const tooltipElement = document.createElement('div');
+    tooltipElement.className = 'card';
+    tooltipElement.textContent = 'DUMMY!';
+    tooltipElement.addEventListener('click', this.closeTooltip);
+    this.element = tooltipElement;
+  }
+}
+
+class ProjectItem {
+  hasActiveTooltip = false;
+
+  constructor(id, updateProjectListsFunction, type) {
+    this.id = id;
+    this.updateProjectListsHandler = updateProjectListsFunction;
+    this.connectMoreInfoButton();
+    this.connectSwitchButton(type);
+  }
+
+  showMoreInfoHandler() {
+    if (this.hasActiveTooltip) {
+      return;
+    }
+    const tooltip = new Tooltip(() => {
+      this.hasActiveTooltip = false;
+    });
+    tooltip.attach();
+    this.hasActiveTooltip = true;
+  }
+
+  connectMoreInfoButton() {
+    const projectItemElement = document.getElementById(this.id);
+    const moreInfoBtn = projectItemElement.querySelector(
+      'button:first-of-type'
+    );
+    moreInfoBtn.addEventListener('click', this.showMoreInfoHandler);
+  }
+
+  connectSwitchButton(type) {
+    const projectItemElement = document.getElementById(this.id);
+    let switchBtn = projectItemElement.querySelector('button:last-of-type');
+    switchBtn = DOMHelper.clearEventListeners(switchBtn);
+    switchBtn.textContent = type === 'active' ? 'Finish' : 'Activate';
+    switchBtn.addEventListener(
+      'click',
+      this.updateProjectListsHandler.bind(null, this.id)
+    );
+  }
+
+  update(updateProjectListsFn, type) {
+    this.updateProjectListsHandler = updateProjectListsFn;
+    this.connectSwitchButton(type);
+  }
+}
+
+class ProjectList {
+  projects = [];
+
+  constructor(type) {
+    this.type = type;
+    const prjItems = document.querySelectorAll(`#${type}-projects li`);
+    for (const prjItem of prjItems) {
+      this.projects.push(
+        new ProjectItem(prjItem.id, this.switchProject.bind(this), this.type)
+      );
+    }
+    console.log(this.projects);
+  }
+
+  setSwitchHandlerFunction(switchHandlerFunction) {
+    this.switchHandler = switchHandlerFunction;
+  }
+
+  addProject(project) {
+    this.projects.push(project);
+    DOMHelper.moveElement(project.id, `#${this.type}-projects ul`);
+    project.update(this.switchProject.bind(this), this.type);
+  }
+
+  switchProject(projectId) {
+    // const projectIndex = this.projects.findIndex(p => p.id === projectId);
+    // this.projects.splice(projectIndex, 1);
+    this.switchHandler(this.projects.find(p => p.id === projectId));
+    this.projects = this.projects.filter(p => p.id !== projectId);
   }
 }
 
 class App {
-  
-
   static init() {
-    const shop = new Shop()
-    this.cart = shop.cart
-  }
-
-  static addProductToCart(product) {
-    this.cart.addProduct(product)
+    const activeProjectsList = new ProjectList('active');
+    const finishedProjectsList = new ProjectList('finished');
+    activeProjectsList.setSwitchHandlerFunction(
+      finishedProjectsList.addProject.bind(finishedProjectsList)
+    );
+    finishedProjectsList.setSwitchHandlerFunction(
+      activeProjectsList.addProject.bind(activeProjectsList)
+    );
   }
 }
 
-App.init()
+App.init();

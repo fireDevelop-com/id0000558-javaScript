@@ -28,7 +28,7 @@ class ProjectItem {
     const projectItemElement = document.getElementById(this.id);
     let switchBtn = projectItemElement.querySelector('button:last-of-type');
     switchBtn = DOMHelper.clearEventListeners(switchBtn);
-    switchBtn.textContent = type === 'active' ? 'Finish' : 'Activate';
+    switchBtn.textContent = type === 'active' ? 'Finish2' : 'Activate2';
     switchBtn.addEventListener(
       'click',
       this.updateProjectListsHandler.bind(null, this.id)
@@ -38,7 +38,7 @@ class ProjectItem {
   update(updateProjectListsFn, type) {
     this.updateProjectListsHandler = updateProjectListsFn;
     this.connectSwitchButton(type);
-  }
+  } 
 }
 
 class ProjectList {
@@ -60,14 +60,13 @@ class ProjectList {
   }
 
   addProject(project) {
-    this.projects.push(project);
+    this.projects.push(project);  
     DOMHelper.moveElement(project.id, `#${this.type}-projects ul`);
     project.update(this.switchProject.bind(this), this.type);
   }
 
   switchProject(projectId) {
-    // const projectIndex = this.projects.findIndex(p => p.id === projectId);
-    // this.projects.splice(projectIndex, 1);
+    console.log(projectId) // p1, p2, p3
     this.switchHandler(this.projects.find(p => p.id === projectId));
     this.projects = this.projects.filter(p => p.id !== projectId);
   }
