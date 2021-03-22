@@ -63,7 +63,8 @@ class ProjectItem {
 
   constructor(id, updateProjectListsFunction, type) {
     this.id = id;
-    this.updateProjectListsHandler = updateProjectListsFunction;
+    this.updateProjectListsHandler = updateProjectListsFunction; //this.switchProject.bind(this)
+    console.log(this.updateProjectListsHandler)
     this.moreInfo();
     this.switch(type);
   }
@@ -71,7 +72,7 @@ class ProjectItem {
   moreInfoTooltip() {
     if (this.hasActiveTooltip) {
       return;
-    }
+    }qw
     const tooltip = new Tooltip(() => {
       this.hasActiveTooltip = false;
     });
@@ -91,7 +92,7 @@ class ProjectItem {
     const projectItemElement = document.getElementById(this.id);
     let switchBtn = projectItemElement.querySelector('button:last-of-type');
     switchBtn = DOMHelper.clearEventListeners(switchBtn);
-    switchBtn.textContent = type === 'active' ? 'Finish' : 'Activate';
+    switchBtn.textContent = type === 'active' ? 'Finish2' : 'Activate2';
     switchBtn.addEventListener(
       'click',
       this.updateProjectListsHandler.bind(null, this.id)

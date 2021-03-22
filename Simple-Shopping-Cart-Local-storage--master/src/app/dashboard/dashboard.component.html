@@ -1,0 +1,34 @@
+<div class="topnav">
+    <a class="active" > <app-nav >  </app-nav>   </a>
+    <a> Hello,   {{email}} </a>
+
+</div>
+ <div class="body"> 
+<div fxLayout="column" fxLayoutAlign="center center" >
+
+    <mat-tab-group >
+
+        <mat-tab label="Items" fxLayout="column" fxLayoutAlign="center" >
+            
+            <div *ngFor="let item of present_items;" style="padding-top: 41px;" fxLayout="row" fxLayoutAlign="space-around center" > 
+                    <div> {{item}} </div>
+
+                    <div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="18px">
+                            <button class="Add_button" (click)="add(item)" >Add</button>
+                            <button class="remove_button" (click)="remove(item)">Remove</button>
+                    </div>    
+            </div><br><br><br><br>
+        </mat-tab>
+        
+        <mat-tab label="Cart"> 
+                <div *ngFor="let selected_item of cart_items;" style="padding-top: 40px;" fxLayout="row" fxLayoutAlign="space-around center" > 
+                    <div> {{selected_item}} </div>
+    
+                    <button class="remove_button" (click)="remove(selected_item)" >Remove</button>
+                </div><br>           
+        </mat-tab>
+        
+        <mat-tab *ngIf="show_setting==1" label="Setting"> Settings </mat-tab>
+    </mat-tab-group>
+</div>
+</div>  

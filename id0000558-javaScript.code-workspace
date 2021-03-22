@@ -6,7 +6,7 @@
     ],
 	"settings": {
 		"files.autoSave": "onFocusChange",
-    "window.zoomLevel": 0,
+    "window.zoomLevel": 1,
     "todohighlight.isEnable": true,
     "todohighlight.isCaseSensitive": true,
     "todohighlight.keywords": [

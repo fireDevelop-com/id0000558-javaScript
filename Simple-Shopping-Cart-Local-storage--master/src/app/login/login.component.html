@@ -1,0 +1,26 @@
+
+<div class="body1">
+
+    <button (click)="register()" style="cursor: pointer;margin-left: 990px" class="button1">
+        <div class="button_text" > Register Here </div>
+    </button>
+
+        <form [formGroup]="form" (ngSubmit)="login()" fxLayout="column" fxLayoutAlign="center center">
+
+
+            <img src="../../assets/log2.jpg" class="img1" height="250px" width="250px"> <br><br><br>
+            
+            <div fxFlex="50px"><b> Email Id: </b>&nbsp;&nbsp;<input type="email" placeholder="Email" formControlName="email" size="30" /> </div> 
+
+            <div fxFlex="70px"><b> Password: </b>&nbsp;&nbsp;<input type="password" placeholder="Password" formControlName="password" size="30" /> </div> 
+
+            <button style="cursor: pointer;" class="button">
+                <div class="button_text" > Login </div>
+            </button>
+
+
+        </form>    
+    </div>
+    
+    
+    

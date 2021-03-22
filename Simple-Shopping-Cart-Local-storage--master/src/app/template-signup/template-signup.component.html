@@ -1,0 +1,58 @@
+<div class="body1">
+    <img style="cursor: pointer;" (click)="to_login()" src="../../assets/arrow-alt-left.png" height="18px" width="25px"> Login
+
+<div fxLayout="row" fxLayoutAlign="space-around center" >
+
+    <img src="../../assets/r1.jpg" class="img1" height="550px" width="500px"> 
+
+    <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+    <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="60px">
+
+        <div style="font-size: 30px;  color: rgb(116, 112, 112)"><b> Registration Form </b> </div> 
+
+        <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="38px">
+        
+            <div fxLayout="column" fxLayoutAlign="center start" fxLayoutGap="50px">  
+                    <br><div class="name_color"><b> Name : </b> </div> 
+                    <div class="name_color"><b> Mail Id : </b> </div> 
+                    <div class="name_color"><b> Phone No : </b> </div> 
+                    <div class="name_color"><b> Password : </b> </div> 
+                    <div class="name_color"><b> Type Of User : </b> </div>             
+            </div>
+
+            <div fxLayout="column" fxLayoutAlign="center start" fxLayoutGap="3px" >  
+                    <mat-form-field  class="example-full-width">
+                            <input matInput placeholder="Name" name="name" ngModel>
+                    </mat-form-field>
+
+                    <mat-form-field  class="example-full-width">
+                            <input matInput placeholder="Email" name="email" ngModel >
+                    </mat-form-field>
+
+                    <mat-form-field  class="example-full-width">
+                            <input matInput placeholder="Phone" name="phone" ngModel >
+                    </mat-form-field>
+
+                    <mat-form-field  class="example-full-width">
+                            <input matInput placeholder="Password" name="pass" ngModel >
+                    </mat-form-field><br>
+
+                    <select style="cursor: pointer;" style="width: 250px" (change)="select_type($event)">
+                            <option  value="Admin" hidden> &nbsp;&nbsp;&nbsp;  Select User Type </option>
+                      
+                            <option *ngFor="let user of user_types" [value]="user"> &nbsp;&nbsp;&nbsp;  {{user}}</option>
+                    </select>
+
+            </div>
+
+            
+
+        </div>
+        <button style="cursor: pointer;" class="button">
+                <div class="button_text" > Register </div>
+        </button>
+    </div>
+    </form>
+
+</div>    
+</div>

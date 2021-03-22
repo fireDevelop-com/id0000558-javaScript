@@ -1,0 +1,40 @@
+.body{
+  background-color:  rgb(198, 200, 201);
+  height: 90vh;
+}
+.topnav {
+    overflow: hidden;
+    background-color: rgb(143, 140, 140);
+  }
+  .topnav a {
+    float: right;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+  .topnav a.active {
+    background-color: rgb(31, 32, 31);
+    color: white;
+  }
+  
+::ng-deep .mat-ink-bar {
+    background-color: var(--primary-color,#1F89CE) !important;
+}
+.Add_button{
+    color: #FFFFFF;
+    height: 25px;
+    width: 70px;
+    border-radius: 10.5px;
+    background-color: #4A90E2;
+    cursor: pointer;
+}
+.remove_button{
+    color: #FFFFFF;
+    height: 25px;
+    width: 70px;
+    border-radius: 10.5px;
+    background-color: rgba(209, 39, 39, 0.603);
+    cursor: pointer;
+}

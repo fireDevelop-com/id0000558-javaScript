@@ -1,0 +1,20 @@
+#info {
+    div {
+        background-color: lighten($black, 50%);
+        color: #ffffff;
+        &:first-child {
+            background-color: $black;
+            border-right: 1px solid #fff;
+        }
+        h2 {
+            font-weight: 300;
+            margin-top: 10px;
+        }
+    }
+} // end #info
+
+@media screen and (max-width: $screen-md-min) {
+    h2 {
+        font-size: 1.5em;
+    } 
+}

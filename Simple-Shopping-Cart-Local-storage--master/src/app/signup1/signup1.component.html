@@ -1,0 +1,65 @@
+<div class="body1">
+        <img style="cursor: pointer;" (click)="to_login()" src="../../assets/arrow-alt-left.png" height="18px" width="25px"> Login
+
+    <div fxLayout="row" fxLayoutAlign="space-around center" >
+
+        
+        <img src="../../assets/r1.jpg" class="img1" height="550px" width="500px"> 
+    
+        <form [formGroup]="form" (ngSubmit)="register()">
+        <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="50px">
+
+            <div style="font-size: 30px;  color: rgb(116, 112, 112)"><b> Registration Form </b> </div> 
+
+            <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="20px">
+                
+                <div fxLayout="column" fxLayoutAlign="center start" fxLayoutGap="45px"> 
+                    <div class="name_color"><b> Name : </b> </div> 
+                    <div class="name_color"><b> Mail Id : </b> </div> 
+                    <div class="name_color"><b> Phone No : </b> </div> 
+                    <div class="name_color"><b> Password : </b> </div> 
+                    <div class="name_color"><b> Type Of User : </b> </div> 
+                </div>
+
+                <div fxLayout="column" fxLayoutAlign="center start" fxLayoutGap="-1px">
+
+                    <mat-form-field  class="example-full-width">
+                            <input matInput placeholder="name" formControlName="name">
+                    </mat-form-field>
+                    
+                    <mat-form-field  class="example-full-width">
+                            <input matInput placeholder="Email" formControlName="email" [formControl]="emailFormControl"
+                                   [errorStateMatcher]="matcher">
+                            <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                              Please enter a valid email address
+                            </mat-error>
+                            <mat-error *ngIf="emailFormControl.hasError('required')">
+                              Email is <strong>required</strong>
+                            </mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field  class="example-full-width">
+                                <input matInput placeholder="Phone" formControlName="phone">
+                        </mat-form-field>
+
+                        <mat-form-field  class="example-full-width">
+                                <input matInput placeholder="Password" formControlName="pass">
+                        </mat-form-field><br><br>
+                       
+                    <select style="cursor: pointer;" style="width: 250px" (change)="select_type($event)">
+                        <option  value="Admin" hidden> &nbsp;&nbsp;&nbsp;  Select User Type </option>
+                  
+                        <option *ngFor="let user of user_types" [value]="user"> &nbsp;&nbsp;&nbsp;  {{user}}</option>
+                    </select>
+
+                </div>
+            </div>
+    
+            <button style="cursor: pointer;" class="button">
+                    <div class="button_text" > Register </div>
+            </button>
+            
+        </div>
+        </form>
+    </div>    
+</div>

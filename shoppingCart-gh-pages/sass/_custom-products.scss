@@ -1,0 +1,19 @@
+.cart {
+    .panel-body {
+        padding: 0;
+        .deleteItem, .addItem {
+            padding: 8px 2px;
+        }
+        tr.controlButtons {
+            border-top: transparent;
+        }
+    }
+    
+    .panel-footer {
+        .table > tbody > tr > td {
+            border-top: none;
+        }
+    }
+    
+}
+

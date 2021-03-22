@@ -1,3 +1,9 @@
 {
-    "editor.mouseWheelZoom": true
+    "editor.mouseWheelZoom": true,
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}",
+        ".vscode{,/**}"
+    ],
+    "appService.defaultWebAppToDeploy": "/subscriptions/1482ab86-8776-4d1b-9320-d2011a85e81a/resourceGroups/id0000558/providers/Microsoft.Web/sites/id0000558",
+    "appService.deploySubpath": "."
 }

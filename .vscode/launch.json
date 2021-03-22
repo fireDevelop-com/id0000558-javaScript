@@ -10,8 +10,8 @@
             "type": "chrome",
             "request": "launch",
             "name": "Launch Chrome against localhost",
-            "url": "C:/Users/admin878/Documents/tharpa-github/Repository_Public/id0000558-javaScript/oop-12-private-properties/index.html",
-            "webRoot": "${workspaceFolder}/oop-12-private-properties/index.html"
+            "url": "C:/Users/admin878/Documents/tharpa-github/Repository_Public/id0000558-javaScript/012-OOP-shopping-cart/index.html",
+            "webRoot": "${workspaceFolder}/"
         }
     ]
 }
