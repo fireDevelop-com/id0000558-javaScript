@@ -11,7 +11,10 @@
             "request": "launch",
             "name": "Launch Chrome against localhost",
             "url": "C:/Users/admin878/Documents/tharpa-github/Repository_Public/id0000558-javaScript/012-OOP-shopping-cart/index.html",
-            "webRoot": "${workspaceFolder}/"
+            "webRoot": "${workspaceFolder}/",
+            "restart": true, // debugind refresh
+            "runtimeExecutable": "nodemon", // debugind refresh
+            "console": "integratedTerminal"
         }
     ]
 }
