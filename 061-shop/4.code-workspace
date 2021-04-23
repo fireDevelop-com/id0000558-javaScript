@@ -22,7 +22,7 @@
             //other styling properties goes here ... 
         }
     ],
-    "todohighlight.keywordsPattern": "class ",
+    "todohighlight.keywordsPattern": "class",
     "todohighlight.defaultStyle": {
        "color": "None",
         "backgroundColor": "#000",
