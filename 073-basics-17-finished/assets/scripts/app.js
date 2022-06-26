@@ -13,7 +13,6 @@ function createAndWriteOutput(operator, resultBeforeCalc, calcNumber) {
   outputResult(currentResult, calcDescription); // from vendor file
 }
 
-
 function writeToLog(
   operationIdentifier,
   prevResult,
